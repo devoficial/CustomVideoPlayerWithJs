@@ -8,6 +8,13 @@ const toggle = document.querySelector(".toggle");
 const skipButtons = document.querySelectorAll("[data-skip]");
 const ranges = document.querySelectorAll("[type='range']");
 
+// speed control ux
+
+const speed =  document.querySelector(".speed");
+const bar = speed.querySelector(".speed-bar");
+
+
+
 // Build our functions
 function togglePlay(){
     const method = video.paused?"play":"pause";
@@ -51,3 +58,16 @@ progress.addEventListener("click",scurb);
 progress.addEventListener("mousemove",() => mousedown && scurb(e));
 progress.addEventListener("mouseup",() => mousedown =true);
 progress.addEventListener("mousedown",() => mousedown = false);
+
+speed.addEventListener("mousemove",function(e){
+    const y = e.pageY - this.offsetTop;
+    const per = y / this.offsetHeight;
+    const min  = 0.5;
+    const max = 5;
+    const height = `${Math.round(per * 100)}%`;
+    console.log(height);
+    bar.style.height = height;
+    const playBackRate = per * (max -min ) + min;
+    bar.textContent =`${playBackRate.toFixed(2)}x`;
+    video.playbackRate = playBackRate;
+});

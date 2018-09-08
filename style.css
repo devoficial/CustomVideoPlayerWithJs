@@ -166,7 +166,7 @@ input[type=range]::-moz-range-thumb {
 
 .speed {
   background:#efefef;
-  flex-basis: 5%;
+  flex-basis: 8%;
   display:flex;
   align-items:flex-start;
   margin:10px;
